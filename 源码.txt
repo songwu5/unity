@@ -1,0 +1,32 @@
+脚本源码:
+using System.Collections;
+using UnityEngine;
+public class NewBehaviourScript : MonoBehaviour
+{
+    bool t;
+    // Use this for initialization
+    void Start()
+    {
+        Coroutine myCoroutine = StartCoroutine(MoveObject());
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        t = Input.GetKey(KeyCode.S);
+        StopCoroutine(MoveObject());
+    }
+    IEnumerator MoveObject()
+    {
+        while (true)
+        {
+            if (t)
+            {  
+                Debug.Log("stop");
+                yield break; 
+            }
+            var movement = 5.0f * Time.deltaTime;
+            transform.Translate(movement, 0, 0);
+            yield return null;
+       }   
+   }
+}
